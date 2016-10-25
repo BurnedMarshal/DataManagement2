@@ -23,14 +23,14 @@ User.find().remove(function(err) {
     'Maria', 'Giorgia', 'Anna', 'Cristina', 'Amanda', 'Michela', 'Marianna', 'Paola'];
     var ages = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
     var surnames = ['Bianchi', 'Rossi', 'Russo', 'Greco', 'Marino', 'Vitale', 'Conti', 'Mancini', 'Romeo'];
-    var domains = ['google.com', 'yahoo.com', 'hotmail.it', 'virgilio.it', 'email.it'];
+    var domains = ['google.com', 'yahoo.com', 'hotmail.it', 'virgilio.it', 'email.it', 'live.com', 'pec.it'];
     var users = [];
-    for(let i = 0; i < 10000; i++) {
+    for(let i = 0; i < 3000; i++) {
       let name = names[i % names.length];
       let surname = surnames[i % surnames.length];
       let age = ages[i % ages.length];
       let emails = [];
-      if((i % 3) === 0) {
+      if(((i % 7) === 0 || (i % 11) === 5) && surname[surname.lenth - 1] !== 'i') {
           emails = [name.toLowerCase() + '.' + surname.toLowerCase() + '@' + domains[i % domains.length],
                         name.toLowerCase() + '.' + surname.toLowerCase() + '@' + domains[(i+1) % domains.length]];
       } else {
