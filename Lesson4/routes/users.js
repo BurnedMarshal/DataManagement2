@@ -1,8 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+var User = require('../models/users');
+
 router.get('/', function(req, res, next) {
-    res.render('index', {});
+    User.find(function(err, users){
+      res.json(users);
+    });
 })
 
 router.get('/:id', function(req, res, next) {
