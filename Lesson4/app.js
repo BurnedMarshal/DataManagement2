@@ -7,6 +7,21 @@ var logger = require('morgan');
 const routes = require('./routes/index');
 const usersRoutes = require('./routes/users');
 
+// Database configuration
+const host = 'localhost';
+const dbName = 'SJ-lesson3';
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://'+ host + '/' + dbName);
+
+var db = mongoose.connection;
+db.on('error', function() {
+    console.error('Connection error!')
+});
+db.once('open', function() {
+    console.log('DB connection Ready');
+});
+
 // Init express app
 var app = express();
 
