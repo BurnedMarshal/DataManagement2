@@ -5,13 +5,14 @@ var logger = require('morgan');
 
 // Import base routes
 const routes = require('./routes/index');
+const usersRoutes = require('./routes/users');
 
 // Init express app
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+app.set('view engine', 'jade');
 
 // Setup logger and body parser
 app.use(logger('dev'));
@@ -19,10 +20,10 @@ app.use(bodyParser.json());
 
 // Setup static public folder
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'jade');
 
 // Setup base routes
 app.use('/', routes);
+app.use('/users', usersRoutes);
 
 // Catch 404 errors
 app.use(function(req, res, next) {
