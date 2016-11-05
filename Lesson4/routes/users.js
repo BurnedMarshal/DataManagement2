@@ -11,19 +11,42 @@ router.get('/', function(req, res, next) {
 })
 
 router.get('/:id', function(req, res, next) {
-    res.render('index', {});
+  User.findOne({_id:req.params.id},function(err, user){
+    if (err) return res.status(500).json({error: err});
+    if(!user) return res.status(404).json({message: 'Utente non trovato'})
+    res.json(user);
+  });
 })
 
 router.post('/', function(req, res, next) {
-    res.render('index', {});
+    var newUser = new User(req.body);
+    newUser.save(function(err){
+      if(err) return res.status(500).json({error: err});
+      res.status(201).json(newUser);
+    })
 })
 
-router.put('/:id', function(req, res, next) {
-    res.render('index', {});
+router.put('/:id', function(request, response, next) {
+    User.findOne({_id: request.params.id})
+    .exec(function(err, user) {
+      if(err) return response.status(500).json({error:err});
+      if(!user) return response.status(404).json({message: 'Utente non trovato'})
+      var i = 0;
+      for(key in request.body) {
+        user[key] = request.body[key];
+      }
+      user.save(function(err) {
+        if(err) return response.status(500).json({error: err});
+        response.json(user);
+      })
+    })
 })
 
 router.delete('/:id', function(req, res, next) {
-    res.render('index', {});
+    User.remove({_id: req.params.id}, function(err) {
+      if(err) return res.status(500).json({error: err})
+      res.json({message: 'Utente eliminato correttamente'})
+    })
 })
 
 module.exports = router
