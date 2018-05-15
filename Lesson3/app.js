@@ -1,5 +1,5 @@
 const host = 'localhost';
-const dbName = 'SJ-lesson3';
+const dbName = 'SJ-lesson3-6';
 
 const mongoose = require('mongoose');
 mongoose.connect(`mongodb://${host}/${dbName}`);
@@ -42,7 +42,7 @@ User.find().remove(function(err) {
       if (users.indexOf(newUserData) === -1) {
           users.push(newUserData);
           let newUser = new User(newUserData);
-          newUser.save(users, function(err, savedUser) {
+          newUser.save(function(err, savedUser) {
               if(err) return console.error('Error saving user: ', err);
               console.log("User Saved!");
           });
