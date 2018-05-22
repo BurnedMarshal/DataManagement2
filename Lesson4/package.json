@@ -16,9 +16,9 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "jade": "^1.11.0",
     "mongoose": "^4.6.5",
     "morgan": "^1.7.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pug": "^2.0.1"
   }
 }

@@ -30,7 +30,7 @@ User.find().remove(function(err) {
       let surname = surnames[i % surnames.length];
       let age = ages[i % ages.length];
       let emails = [];
-      if(((i % 7) === 0 || (i % 11) === 5) && surname[surname.lenth - 1] !== 'i') {
+      if(((i % 7) === 0 || (i % 11) === 5)) {
           emails = [name.toLowerCase() + '.' + surname.toLowerCase() + '@' + domains[i % domains.length],
                         name.toLowerCase() + '.' + surname.toLowerCase() + '@' + domains[(i+1) % domains.length]];
       } else {
